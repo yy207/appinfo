@@ -70,8 +70,17 @@
 			<bean class="cn.smbms.interceptor.SysInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors> -->
-	
-	
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/manager/**"/>
+			<bean class="com.interceptors.BackendPreInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/dev/**"/>
+			<bean class="com.interceptors.DevPreInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>-->
+
 	<!-- 配置MultipartResolver，用于上传文件，使用spring的CommonsMultipartResolver -->  
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		 <property name="maxUploadSize" value="5000000"/>

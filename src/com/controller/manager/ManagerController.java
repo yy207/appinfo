@@ -11,12 +11,20 @@ public class ManagerController {
     //功能实现
 
     /**
-     * 登录功能
-     * @return
+     *
+     * @return 登录功能
      */
     @RequestMapping("/dologin")
     public String dologin(){
         return "backend/main";
+    }
+    /**
+     *
+     * @return 注销功能
+     */
+    @RequestMapping("/logout")
+    public String logout(){
+        return "redirect:/index.jsp";
     }
 
     /**
