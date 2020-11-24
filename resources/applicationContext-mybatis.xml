@@ -49,6 +49,12 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     	<property name="dataSource" ref="dataSource"/>
     	<property name="configLocation" value="classpath:mybatis-config.xml"/>
+<!--		<property name="mapperLocations" >-->
+<!--			<list>-->
+<!--				<value>classpath:/mapper/*.xml</value>-->
+<!--			</list>-->
+<!--		</property>-->
+
     </bean>
     
    	<!-- AOP 事务处理 开始 -->    
@@ -66,6 +72,6 @@
 
 	<!-- mapper -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-         <property name="basePackage" value="com.dao.mapper" />
+         <property name="basePackage" value="com.dao" />
     </bean>
 </beans>
