@@ -4,5 +4,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.AppInfoMapper">
 
+    <select id="getList" resultType="AppInfo">
+        SELECT
+        app_info.*,
+        ( select valueName from data_dictionary where data_dictionary.typeCode = 'APP_STATUS' and valueId = app_info.flatformId ) as statusName,
+        ( select valueName from data_dictionary where data_dictionary.typeCode = 'APP_FLATFORM' and valueId = app_info.`status`) as flatformName,
+        ( select app_category.categoryName from app_category where id = app_info.categoryLevel1) as categoryLevel1Name,
+        ( select app_category.categoryName from app_category where id = app_info.categoryLevel2) as categoryLevel2Name,
+        ( select app_category.categoryName from app_category where id = app_info.categoryLevel3) as categoryLevel3Name,
+        app_version.versionNo
+        FROM
+            app_info
+        INNER JOIN app_version on app_version.appId = app_info.id
+        <trim prefix="WHERE"  prefixOverrides="and">
+            <if test="appInfo != null ">
+                <if test="appInfo.softwareName != null and appInfo.softwareName != '' ">
+                    and app_info. softwareName like CONCAT('%',#{appInfo.softwareName},'%')
+                </if>
+                <if test="appInfo.flatformId != null and appInfo.flatformId != '' ">
+                    and app_info. flatformId = #{appInfo.flatformId}
+                </if>
+                <if test="appInfo.categoryLevel1 != null and appInfo.categoryLevel1 != '' ">
+                    and app_info. categoryLevel1 = #{appInfo.categoryLevel1}
+                </if>
+                <if test="appInfo.categoryLevel2 != null and appInfo.categoryLevel2 != '' ">
+                    and app_info. categoryLevel2 = #{appInfo.categoryLevel2}
+                </if>
+                <if test="appInfo.categoryLevel3 != null and appInfo.categoryLevel3 != '' ">
+                    and app_info. categoryLevel3 = #{appInfo.categoryLevel3}
+                </if>
+            </if>
+        </trim>
+        <if test="page != null ">
+           limit #{page.pageOffset},#{page.pageSize}
+        </if>
+    </select>
     
 </mapper>

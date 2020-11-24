@@ -17,6 +17,7 @@ public class DevUser {
     private Integer modifyBy;
     private Date modifyDate;
 
+
     public Integer getId() {
         return id;
     }
@@ -96,4 +97,6 @@ public class DevUser {
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
     }
+
+    
 }

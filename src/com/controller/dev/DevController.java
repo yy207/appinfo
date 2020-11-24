@@ -28,7 +28,7 @@ public class DevController {
         String devPassword = request.getParameter("devPassword");
         DevUser devUser = devUserService.login(devCode,devPassword);
         if (devUser != null){
-            session.setAttribute(Contains.CURRENT_USER,devUser);
+            session.setAttribute(Contains.DEV_USER_SESSION,devUser);
             return "developer/main";
         }
         request.setAttribute(Contains.ERROR_MSG,"用户名或密码错误!");

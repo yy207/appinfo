@@ -3,68 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.BackendUserMapper">
-    <select id="getAddress" resultType="Address">
-        SELECT * FROM address
-        <trim prefix="where" prefixOverrides="and | or6">
-            <if test="id != null">
-                and id=#{id}
-            </if>
-            <if test="uid != null">
-                and uid =#{uid}
-            </if>
-        </trim>
-        order by id desc,isDefault desc
-        <if test="from !=null and pageSize !=null">
-            limit  #{from},#{pageSize}
-        </if>
+    <select id="login" resultType="com.pojo.BackendUser">
+            SELECT
+                backend_user.*,
+                data_dictionary.valueName as userTypeName
+            FROM
+                backend_user
+                INNER JOIN data_dictionary ON data_dictionary.valueId = backend_user.userType
+                AND data_dictionary.typeCode = 'USER_TYPE'
+                AND userCode = #{userCode}
+                AND userPassword = #{userPassword}
     </select>
-
-    <select id="getAddressByDefault" resultType="Address">
-        SELECT * FROM address where uid =#{uid}
-        and isDefault =1
-    </select>
-
-    <delete id="deleteAddress">
-        DELETE FROM address WHERE id=#{id} AND uid=#{uid}
-    </delete>
-    <insert id="addAddress">
-        INSERT INTO address(`uid`,name,`address`,`remark`,phone,city1,city2,city3,isDefault)
-        values(#{address.uid},#{address.name},#{address.address},#{address.remark},#{address.phone},#{address.city1},#{address.city2},#{address.city3},#{address.isDefault});
-    </insert>
-    <update id="updateDefaultAddress">
-        UPDATE address SET isDefault = 1 WHERE uid =#{uid}  AND id =#{id};
-
-    </update>
-    <update id="updateAddress">
-        UPDATE address SET isDefault = 0 WHERE uid =#{uid};
-    </update>
-    <update id="updateAddressById">
-        UPDATE   `address`
-        <trim prefix="SET" suffixOverrides="," suffix="WHERE `id`=#{address.id} " >
-            <if test=" address.city1!=null and address.city1!= '' ">
-                city1=#{address.city1},
-            </if>
-            <if test=" address.city2!=null and address.city2!= '' ">
-                city2=#{address.city2},
-            </if>
-            <if test=" address.city3!=null and address.city3!= '' ">
-                city3=#{address.city3},
-            </if>
-            <if test=" address.name!=null and address.name!= '' ">
-                name=#{address.name},
-            </if>
-            <if test=" address.address!=null and address.address!= '' ">
-                address=#{address.address},
-            </if>
-            <if test=" address.isDefault!=null and address.isDefault!= '' ">
-                isDefault=#{address.isDefault},
-            </if>
-
-            <if test=" address.phone!=null and address.phone != '' ">
-                phone=#{address.phone},
-            </if>
-        </trim>
-
-    </update>
 
 </mapper>

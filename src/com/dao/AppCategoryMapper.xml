@@ -3,6 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.AppCategoryMapper">
+    <select id="getList" resultType="AppCategory">
+        select * from app_category
+        <trim prefix="where" prefixOverrides="and">
+            <if test="level != null ">
+                <if test="level = '1'">
+                    and parentId is null
+                </if>
+                <if test="level = '2'">
+                    and parentId in ( select id  from app_category where parentId is null )
+                </if>
+                <if test="level = '3'">
+                    and parentId in ( select id from app_category where parentId in ( select id  from app_category
+                    where parentId is null ) )
+                </if>
+            </if>
+        </trim>
+    </select>
 
-    
 </mapper>
