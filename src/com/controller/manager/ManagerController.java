@@ -75,9 +75,9 @@ public class ManagerController {
         AppInfo appInfo = new AppInfo();
         appInfo.setSoftwareName(softwareName);
         appInfo.setFlatformId(flatformId == null || categoryLevel3 == "" ? null :Integer.parseInt(flatformId));
-        appInfo.setCategoryLevel1(categoryLevel1 == null || categoryLevel3 == "" ? null :
+        appInfo.setCategoryLevel1(categoryLevel1 == null || categoryLevel1 == "" ? null :
                 Integer.parseInt(categoryLevel1));
-        appInfo.setCategoryLevel2(categoryLevel2 == null || categoryLevel3 == "" ? null :
+        appInfo.setCategoryLevel2(categoryLevel2 == null || categoryLevel2 == "" ? null :
                 Integer.parseInt(categoryLevel2));
         appInfo.setCategoryLevel3(categoryLevel3 == null || categoryLevel3 == "" ? null :
                 Integer.parseInt(categoryLevel3));
@@ -92,18 +92,13 @@ public class ManagerController {
         //data
         Map<String, List<DataDictionary>> mapDataDictionary = dataDictionaryService.getMapDataDictionary();
         //
-        List<AppCategory> categoryLevel1List = appCategoryService.getList(1);
-        List<AppCategory> categoryLevel2List = appCategoryService.getList(2);
-        List<AppCategory> categoryLevel3List = appCategoryService.getList(3);
+        List<AppCategory> categoryLevel1List = appCategoryService.getList();
 
         model.addAttribute("appInfoList",appInfoList);
-        //model.addAttribute("statusList",mapDataDictionary.get("APP_STATUS"));
+        model.addAttribute("flatFormList",mapDataDictionary.get("APP_FLATFORM"));
         model.addAttribute("pages",page);
         model.addAttribute("querySoftwareName",softwareName);
         model.addAttribute("categoryLevel1List",categoryLevel1List);
-        model.addAttribute("categoryLevel2List",categoryLevel2List);
-        model.addAttribute("categoryLevel3List",categoryLevel3List);
-
         return "backend/applist";
     }
 
@@ -116,7 +111,20 @@ public class ManagerController {
     @RequestMapping("/backend/app/check")
     public String check(HttpSession session){
         session.removeAttribute(Contains.USER_SESSION);
-        return "appcheck";
+        return "backend/appcheck";
+    }
+
+    /**
+     *
+     * @param request
+     * @return backend/app/categorylevellist.json?pid=14
+     */
+    @RequestMapping("/backend/app/categorylevellist.json")
+    @ResponseBody
+    public Object categorylevellist(HttpServletRequest request){
+       String pid = request.getParameter("pid");
+       Integer parentId = Integer.parseInt(pid);
+       return appCategoryService.getListByPid(parentId);
     }
 
     //页面 跳转

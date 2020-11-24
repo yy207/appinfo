@@ -8,7 +8,7 @@ import java.util.Date;
 public class AppCategory {
 
     private Integer id;
-    private Integer categoryCode;
+    private String categoryCode;
     private String categoryName;
     private Integer parentId;
     private Integer createdBy;
@@ -24,11 +24,11 @@ public class AppCategory {
         this.id = id;
     }
 
-    public Integer getCategoryCode() {
+    public String getCategoryCode() {
         return categoryCode;
     }
 
-    public void setCategoryCode(Integer categoryCode) {
+    public void setCategoryCode(String categoryCode) {
         this.categoryCode = categoryCode;
     }
 

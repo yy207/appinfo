@@ -13,7 +13,12 @@ public class AppCategoryServiceImpl implements AppCategoryService {
     @Autowired
     private AppCategoryMapper appCategoryMapper;
     @Override
-    public List<AppCategory> getList(Integer level) {
-        return appCategoryMapper.getList(level);
+    public List<AppCategory> getList() {
+        return appCategoryMapper.getList();
+    }
+
+    @Override
+    public List<AppCategory> getListByPid(Integer parentId) {
+        return appCategoryMapper.getListByPid(parentId);
     }
 }

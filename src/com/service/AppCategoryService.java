@@ -9,5 +9,6 @@ import java.util.List;
  * APP分类
  */
 public interface AppCategoryService {
-    List<AppCategory> getList(@Param("level")Integer level);
+    List<AppCategory> getList();
+    List<AppCategory> getListByPid(@Param("parentId")Integer parentId);
 }

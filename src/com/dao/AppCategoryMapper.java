@@ -13,5 +13,12 @@ public interface AppCategoryMapper {
      * @param level
      * @return 集合
      */
-    List<AppCategory> getList(@Param("level")Integer level);
+    List<AppCategory> getList();
+
+    /**
+     *
+     * @param parentId
+     * @return
+     */
+    List<AppCategory> getListByPid(@Param("parentId")Integer parentId);
 }
