@@ -155,6 +155,31 @@ public class DevController {
         map.put("APKName","noexist");
         return map;
     }
+    /**
+     *
+     * @return APP添加
+     */
+    @RequestMapping("/flatform/app/appinfoaddsave")
+    public String appinfoaddsave(HttpServletRequest request){
+
+
+        String softwareName = request.getParameter("softwareName") ;
+        String APKName = request.getParameter("APKName") ;
+        String supportROM = request.getParameter("supportROM") ;
+        String interfaceLanguage = request.getParameter("interfaceLanguage") ;
+        String softwareSize = request.getParameter("softwareSize") ;
+        String downloads = request.getParameter("downloads") ;
+        String flatformId = request.getParameter("flatformId") ;
+        String  categoryLevel1 = request.getParameter("categoryLevel1") ;
+        String categoryLevel2 = request.getParameter("categoryLevel2") ;
+        String categoryLevel3 = request.getParameter("categoryLevel3") ;
+        String appInfo = request.getParameter("appInfo") ;
+        String fileUploadError = request.getParameter("fileUploadError") ;
+        String a_logoPicPath = request.getParameter("a_logoPicPath") ;
+        //return "developer/appinfoadd";
+
+        return "developer/appinfolist";
+    }
     //跳转页面
     /**
      *
@@ -166,7 +191,7 @@ public class DevController {
     }
     /**
      *
-     * @return 开发者登录页
+     * @return App添加页
      */
     @RequestMapping("/flatform/app/appinfoadd")
     public String appinfoadd(){

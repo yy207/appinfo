@@ -121,7 +121,8 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">LOGO图片 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="file" class="form-control col-md-7 col-xs-12" name="a_logoPicPath"  required="required" id="a_logoPicPath"/>
+            <input type="file" class="form-control col-md-7 col-xs-12 el-upload" name="a_logoPicPath"
+                   accept="image/*"  required="required" id="a_logoPicPath"/>
             ${fileUploadError }
             </div>
           </div>
@@ -140,3 +141,4 @@
 </div>
 <%@include file="common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/appinfoadd.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/fileupload.js"></script>
