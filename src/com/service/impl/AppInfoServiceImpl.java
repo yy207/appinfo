@@ -17,4 +17,10 @@ public class AppInfoServiceImpl implements AppInfoService {
     public List<AppInfo> getList(AppInfo appInfo, Page page) {
         return appInfoMapper.getList(appInfo,page);
     }
+
+    @Override
+    public AppInfo getListByName(String APKName) {
+        return appInfoMapper.getListByName(APKName);
+    }
+
 }

@@ -39,5 +39,12 @@
            limit #{page.pageOffset},#{page.pageSize}
         </if>
     </select>
+    <select id="getListByName" resultType="AppInfo">
+        SELECT
+        app_info.*
+        FROM
+        app_info
+        WHERE app_info.APKName = #{APKName}
+    </select>
     
 </mapper>

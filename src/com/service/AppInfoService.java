@@ -17,4 +17,11 @@ public interface AppInfoService {
      * @return APP数据
      */
     List<AppInfo> getList(AppInfo appInfo,Page page);
+
+    /**
+     * 根据名称查询
+     * @param APKName apk名称
+     * @return
+     */
+    AppInfo getListByName(@Param("APKName") String APKName);
 }

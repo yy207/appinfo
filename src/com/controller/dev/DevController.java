@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -141,8 +142,18 @@ public class DevController {
     @RequestMapping("/flatform/app/apkexist.json")
     @ResponseBody
     public Object apkexist(HttpServletRequest request){
+        Map<String,String> map = new HashMap<>();
         String tcode = request.getParameter("APKName");
-        return dataDictionaryService.getMapDataDictionary().get(tcode);
+        if(tcode==null||tcode == ""){
+            map.put("APKName","empty");
+            return map;
+        }
+        if (appInfoService.getListByName(tcode)!=null){
+            map.put("APKName","exist");
+            return map;
+        }
+        map.put("APKName","noexist");
+        return map;
     }
     //跳转页面
     /**
