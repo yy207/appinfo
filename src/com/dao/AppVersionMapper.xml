@@ -14,5 +14,33 @@
         WHERE
             app_version.appId = #{appId}
     </select>
+    <insert id="addversionsave">
+        INSERT INTO `app_version` (
+            `id`, `appId`, `versionNo`, `versionInfo`, `publishStatus`,
+            `downloadLink`, `versionSize`, `createdBy`, `creationDate`,
+            `modifyBy`, `modifyDate`, `apkLocPath`, `apkFileName` )
+        VALUES (
+            #{appVersion.id},#{appVersion.appId},#{appVersion.versionNo},#{appVersion.versionInfo},#{appVersion.publishStatus},
+            #{appVersion.downloadLink},#{appVersion.versionSize},#{appVersion.createdBy},#{appVersion.creationDate},
+            #{appVersion.modifyBy},#{appVersion.modifyDate},#{appVersion.apkLocPath},#{appVersion.apkFileName}
+        );
+    </insert>
+    <select id="getAppVersionListByVersionId" resultType="AppVersion">
+        SELECT
+            app_version.*,
+            app_info.APKName AS appName,
+            (select valueName from data_dictionary where typeCode = 'PUBLISH_STATUS' and valueId = app_version.publishStatus) as publishStatusName
+        FROM
+            app_version
+        INNER JOIN app_info ON app_version.appId = app_info.id
 
+        <trim prefix="WHERE"  prefixOverrides="and">
+            <if test="appId != null">
+                app_version.appId = #{appId}
+            </if>
+            <if test="versionId != null">
+                and app_version.id = #{versionId}
+            </if>
+        </trim>
+    </select>
 </mapper>

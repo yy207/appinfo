@@ -253,14 +253,26 @@ public class DevController {
      */
     @RequestMapping("/flatform/app/addversionsave")
     public String addversionsave(HttpServletRequest request){
-        appId
-        versionNo
-        versionSize
-        publishStatus
-        versionInfo
-        fileUploadError
-        apkLocPath
+        String appId = request.getParameter("appId");
+        String versionNo = request.getParameter("versionNo");
+        String versionSize = request.getParameter("versionSize");
+        String publishStatus = request.getParameter("publishStatus");
+        String versionInfo = request.getParameter("versionInfo");
+        String fileUploadError = request.getParameter("fileUploadError");
+        String apkLocPath = request.getParameter("apkLocPath");
         return "developer/appversionadd";
+    }
+    /**
+     * flatform/app/appversionmodify?vid=37&aid=51
+     * @return App版本添加页
+     */
+    @RequestMapping("/flatform/app/appversionmodify")
+    public String appversionmodify(HttpServletRequest request){
+        String vid = request.getParameter("vid");
+        String aid = request.getParameter("aid");
+
+
+        return "developer/appversionmodify";
     }
 
 
