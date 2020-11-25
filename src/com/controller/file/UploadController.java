@@ -68,8 +68,10 @@ public class UploadController {
                 if (file != null) {
                     // old file name
                     String fileName = file.getOriginalFilename();
-                    // new filename
-                    String generateFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName.substring(fileName.lastIndexOf("."));
+                    // new filename uuid随机名称
+                    //String generateFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName.substring(fileName.lastIndexOf("."));
+                    //原名字
+                    String generateFileName = fileName;
                     // store filename
                     String distFileAddress = fileAddress  + generateFileName;
                     builder.append(distFileAddress+",");

@@ -24,8 +24,18 @@ public class AppInfoServiceImpl implements AppInfoService {
     }
 
     @Override
+    public AppInfo getById(Integer id) {
+        return appInfoMapper.getById(id);
+    }
+
+    @Override
     public Integer appinfoAddSave(AppInfo appInfo) {
         return appInfoMapper.appinfoAddSave(appInfo);
+    }
+
+    @Override
+    public Integer appinfoDelById(Integer id) {
+        return appInfoMapper.appinfoDelById(id);
     }
 
 }

@@ -1,24 +1,20 @@
 package com.controller.dev;
 
-import com.pojo.AppCategory;
-import com.pojo.AppInfo;
-import com.pojo.DataDictionary;
-import com.pojo.DevUser;
-import com.service.AppCategoryService;
-import com.service.AppInfoService;
-import com.service.DataDictionaryService;
-import com.service.DevUserService;
+import com.pojo.*;
+import com.service.*;
 import com.utils.Contains;
 import com.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +30,8 @@ public class DevController {
     private DataDictionaryService dataDictionaryService;
     @Autowired
     private AppCategoryService appCategoryService;
+    @Autowired
+    private AppVersionService appVersionService;
     //功能实现
 
     /**
@@ -215,14 +213,57 @@ public class DevController {
         Map<String,String> map = new HashMap<>();
         String id = request.getParameter("id");
 
-
-
-
-        map.put("delResult","true");
+        if (id == null || id == "" || appInfoService.getById(Integer.parseInt(id)) == null){
+            map.put("delResult","notexist");
+            return map;
+        }
+        if (appInfoService.appinfoDelById(Integer.parseInt(id))>0){
+            map.put("delResult","true");
+            return map;
+        }
         map.put("delResult","false");
-        map.put("delResult","notexist");
         return map;
     }
+    /**
+     * flatform/app/appview/59
+     * @return App查看页
+     */
+    @RequestMapping("/flatform/app/appview/{id}")
+    public String appinfoadd(@PathVariable("id")Integer id,HttpServletRequest request){
+        AppInfo appInfo = appInfoService.getById(id);
+        request.setAttribute("appInfo",appInfo);
+        return "developer/appinfoview";
+    }
+    /**
+     * flatform/app/appversionadd?id=60
+     * @return App版本添加页
+     */
+    @RequestMapping("/flatform/app/appversionadd")
+    public String appversionadd(HttpServletRequest request){
+        String idStr =request.getParameter("id");
+        Integer appId = Integer.parseInt(idStr);
+        List<AppVersion> appVersionList = appVersionService.getAppVersionList(appId);
+
+        request.setAttribute("appVersionList",appVersionList);
+        return "developer/appversionadd";
+    }
+    /**
+     * flatform/app/appversionadd?id=60
+     * @return App版本添加页
+     */
+    @RequestMapping("/flatform/app/addversionsave")
+    public String addversionsave(HttpServletRequest request){
+        appId
+        versionNo
+        versionSize
+        publishStatus
+        versionInfo
+        fileUploadError
+        apkLocPath
+        return "developer/appversionadd";
+    }
+
+
     //跳转页面
     /**
      *
@@ -240,6 +281,8 @@ public class DevController {
     public String appinfoadd(){
         return "developer/appinfoadd";
     }
+
+
 
 
 

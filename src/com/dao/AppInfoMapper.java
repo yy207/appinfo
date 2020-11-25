@@ -23,6 +23,12 @@ public interface AppInfoMapper {
      * @return
      */
     AppInfo getListByName(@Param("APKName") String APKName);
+    /**
+     * 根据名称查询
+     * @param id APKid
+     * @return
+     */
+    AppInfo getById(@Param("id") Integer id);
 
     /**
      *  添加一个app
@@ -30,5 +36,11 @@ public interface AppInfoMapper {
      * @return 影响行数
      */
     Integer appinfoAddSave(@Param("appInfo")AppInfo appInfo);
+    /**
+     *  删除一个app
+     * @param id
+     * @return 影响行数
+     */
+    Integer appinfoDelById(@Param("id") Integer id);
 
 }

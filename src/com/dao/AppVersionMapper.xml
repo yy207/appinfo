@@ -3,6 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.AppVersionMapper">
+    <select id="getAppVersionList" resultType="AppVersion">
+        SELECT
+            app_version.*,
+            app_info.APKName AS appName,
+            (select valueName from data_dictionary where typeCode = 'PUBLISH_STATUS' and valueId = app_version.publishStatus) as publishStatusName
+        FROM
+            app_version
+        INNER JOIN app_info ON app_version.appId = app_info.id
+        WHERE
+            app_version.appId = #{appId}
+    </select>
 
-    
 </mapper>

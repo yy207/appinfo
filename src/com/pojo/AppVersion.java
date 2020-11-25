@@ -20,9 +20,12 @@ public class AppVersion {
     private String apkLocPath;
     private String apkFileName;
 
+    private String appName;
+    private String publishStatusName;
+
     public Integer getId() {
-        return id;
-    }
+return id;
+}
 
     public void setId(Integer id) {
         this.id = id;
@@ -122,5 +125,21 @@ public class AppVersion {
 
     public void setApkFileName(String apkFileName) {
         this.apkFileName = apkFileName;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public String getPublishStatusName() {
+        return publishStatusName;
+    }
+
+    public void setPublishStatusName(String publishStatusName) {
+        this.publishStatusName = publishStatusName;
     }
 }

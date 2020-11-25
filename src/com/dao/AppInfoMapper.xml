@@ -46,6 +46,13 @@
         app_info
         WHERE app_info.APKName = #{APKName}
     </select>
+    <select id="getById" resultType="AppInfo">
+        SELECT
+        app_info.*
+        FROM
+        app_info
+        WHERE app_info.id = #{id}
+    </select>
     <insert id="appinfoAddSave" >
         INSERT INTO  `app_info` (
                 `softwareName`, `APKName`, `supportROM`,  `interfaceLanguage`, `softwareSize`,
@@ -63,5 +70,7 @@
                 #{appInfo.versionId}
             );
     </insert>
-    
+    <delete id="appinfoDelById">
+        delete from app_info where id = #{id}
+    </delete>
 </mapper>
