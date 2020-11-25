@@ -123,6 +123,8 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="file" class="form-control col-md-7 col-xs-12 el-upload" name="a_logoPicPath"
                    accept="image/*"  required="required" id="a_logoPicPath"/>
+              <input type="text" name="logoPicPath" value="" style="display: none" id="logoPicPath">
+              <input type="text" name="logoLocPath" value="" style="display: none" id="logoLocPath">
             ${fileUploadError }
             </div>
           </div>

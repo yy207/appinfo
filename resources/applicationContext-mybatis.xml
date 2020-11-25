@@ -60,7 +60,7 @@
    	<!-- AOP 事务处理 开始 -->    
 	<aop:aspectj-autoproxy />
 	<aop:config  proxy-target-class="true">
-		<aop:pointcut expression="execution(* *cn.smbms.service..*(..))" id="transService"/>
+		<aop:pointcut expression="execution(* *com.service..*(..))" id="transService"/>
 		<aop:advisor pointcut-ref="transService" advice-ref="txAdvice" />
 	</aop:config> 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">  

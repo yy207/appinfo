@@ -160,9 +160,8 @@ public class DevController {
      * @return APP添加
      */
     @RequestMapping("/flatform/app/appinfoaddsave")
-    public String appinfoaddsave(HttpServletRequest request){
-
-
+    public String appinfoaddsave(HttpServletRequest request,HttpSession session){
+        DevUser devUser = (DevUser) session.getAttribute(Contains.DEV_USER_SESSION);
         String softwareName = request.getParameter("softwareName") ;
         String APKName = request.getParameter("APKName") ;
         String supportROM = request.getParameter("supportROM") ;
@@ -174,10 +173,33 @@ public class DevController {
         String categoryLevel2 = request.getParameter("categoryLevel2") ;
         String categoryLevel3 = request.getParameter("categoryLevel3") ;
         String appInfo = request.getParameter("appInfo") ;
-        String fileUploadError = request.getParameter("fileUploadError") ;
-        String a_logoPicPath = request.getParameter("a_logoPicPath") ;
+        String logoPicPath = request.getParameter("logoPicPath") ;
+        String logoLocPath = request.getParameter("logoLocPath") ;
+
+        AppInfo appInfoObj = new AppInfo();
+        appInfoObj.setSoftwareName(softwareName);
+        appInfoObj.setCategoryLevel1(categoryLevel1 ==null || categoryLevel1 == ""?null:
+                Integer.parseInt(categoryLevel1));
+        appInfoObj.setCategoryLevel2(categoryLevel2 ==null || categoryLevel2 == ""?null:
+                Integer.parseInt(categoryLevel2));
+        appInfoObj.setCategoryLevel3(categoryLevel3 ==null || categoryLevel3 == ""?null:
+                Integer.parseInt(categoryLevel3));
+        appInfoObj.setSoftwareSize(softwareSize ==null || softwareSize == ""?null:
+                Double.parseDouble(softwareSize));
+        appInfoObj.setFlatformId(flatformId ==null || flatformId == ""?null:
+                Integer.parseInt(flatformId));
+        appInfoObj.setDownloads(downloads ==null || downloads == ""?null:
+                Integer.parseInt(downloads));
+        appInfoObj.setSupportROM(supportROM);
+        appInfoObj.setAPKName(APKName);
+        appInfoObj.setDevId(devUser.getId());
+        appInfoObj.setInterfaceLanguage(interfaceLanguage);
+        appInfoObj.setAppInfo(appInfo);
+        appInfoObj.setLogoPicPath(logoPicPath);
+        appInfoObj.setLogoLocPath(logoLocPath);
         //return "developer/appinfoadd";
 
+        String fileUploadError = request.getParameter("fileUploadError") ;
         return "developer/appinfolist";
     }
     //跳转页面

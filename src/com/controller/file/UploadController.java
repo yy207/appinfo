@@ -2,6 +2,7 @@ package com.controller.file;
 
 import com.utils.R;
 import com.utils.Contains;
+import javafx.application.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,11 +41,16 @@ public class UploadController {
         }
         return localhost.getHostAddress();
     }
+//    /AppInfoSystem/statics/uploadfiles/com.bithack.apparatus.jpg
     @ResponseBody
     @RequestMapping(value = "/upload", consumes = {"multipart/form-data"},method = RequestMethod.POST)
-    public R upload(HttpServletRequest request,R response) {
+    public R upload(HttpServletRequest request , R response) {
+        log.info( "=====>" + request.getServletPath());
+        request.getRealPath(request.getContextPath());
+//        http://localhost:8080/appinfo/statics/
         //服务器路径
-        String fileAddress ="http://"+ getIp()+ ":" + Contains.SERVER_PORT + File.separator;
+        //String fileAddress ="http://"+ getIp()+ ":" + Contains.SERVER_PORT + File.separator;
+        String fileAddress =Contains.FILE_DIR;
         //服务器路径集合
         ArrayList<String> imgUrls = new ArrayList<String>();
         //
@@ -69,9 +75,9 @@ public class UploadController {
                     builder.append(distFileAddress+",");
                     imgUrls.add(distFileAddress);
                     // generate file to disk
-                    System.out.println(Contains.FILE_DIR+ generateFileName);
+                    System.out.println(fileAddress+ generateFileName);
                     try {
-                        file.transferTo(new File(Contains.FILE_DIR + generateFileName));
+                        file.transferTo(new File(fileAddress + generateFileName));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
