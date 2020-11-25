@@ -204,6 +204,25 @@ public class DevController {
         request.setAttribute("fileUploadError","添加失败！");
         return "developer/appinfoadd";
     }
+
+    /**
+     * flatform/app/delapp.json?id=60
+     * @return 删除APP以及其版本信息
+     */
+    @ResponseBody
+    @RequestMapping("/flatform/app/delapp.json")
+    public Object delapp(HttpServletRequest request){
+        Map<String,String> map = new HashMap<>();
+        String id = request.getParameter("id");
+
+
+
+
+        map.put("delResult","true");
+        map.put("delResult","false");
+        map.put("delResult","notexist");
+        return map;
+    }
     //跳转页面
     /**
      *
