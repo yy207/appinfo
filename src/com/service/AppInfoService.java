@@ -2,7 +2,6 @@ package com.service;
 
 import com.pojo.AppInfo;
 import com.utils.Page;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,5 +22,11 @@ public interface AppInfoService {
      * @param APKName apk名称
      * @return
      */
-    AppInfo getListByName(@Param("APKName") String APKName);
+    AppInfo getListByName(String APKName);
+    /**
+     *  添加一个app
+     * @param appInfo
+     * @return 影响行数
+     */
+    Integer appinfoAddSave(AppInfo appInfo);
 }

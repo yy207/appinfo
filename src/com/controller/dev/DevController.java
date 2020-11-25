@@ -197,10 +197,12 @@ public class DevController {
         appInfoObj.setAppInfo(appInfo);
         appInfoObj.setLogoPicPath(logoPicPath);
         appInfoObj.setLogoLocPath(logoLocPath);
-        //return "developer/appinfoadd";
 
-        String fileUploadError = request.getParameter("fileUploadError") ;
-        return "developer/appinfolist";
+        if (appInfoService.appinfoAddSave(appInfoObj)>0){
+            return "developer/appinfolist";
+        }
+        request.setAttribute("fileUploadError","添加失败！");
+        return "developer/appinfoadd";
     }
     //跳转页面
     /**

@@ -23,4 +23,12 @@ public interface AppInfoMapper {
      * @return
      */
     AppInfo getListByName(@Param("APKName") String APKName);
+
+    /**
+     *  添加一个app
+     * @param appInfo
+     * @return 影响行数
+     */
+    Integer appinfoAddSave(@Param("appInfo")AppInfo appInfo);
+
 }

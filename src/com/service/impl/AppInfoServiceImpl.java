@@ -23,4 +23,9 @@ public class AppInfoServiceImpl implements AppInfoService {
         return appInfoMapper.getListByName(APKName);
     }
 
+    @Override
+    public Integer appinfoAddSave(AppInfo appInfo) {
+        return appInfoMapper.appinfoAddSave(appInfo);
+    }
+
 }

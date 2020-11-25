@@ -15,7 +15,7 @@
         app_version.versionNo
         FROM
             app_info
-        INNER JOIN app_version on app_version.appId = app_info.id
+        left JOIN app_version on app_version.appId = app_info.id
         <trim prefix="WHERE"  prefixOverrides="and">
             <if test="appInfo != null ">
                 <if test="appInfo.softwareName != null and appInfo.softwareName != '' ">
@@ -46,5 +46,22 @@
         app_info
         WHERE app_info.APKName = #{APKName}
     </select>
+    <insert id="appinfoAddSave" >
+        INSERT INTO  `app_info` (
+                `softwareName`, `APKName`, `supportROM`,  `interfaceLanguage`, `softwareSize`,
+                `updateDate`, `devId`, `appInfo`,  `status`, `onSaleDate`, `offSaleDate`,
+                `flatformId`, `categoryLevel3`, `downloads`, `createdBy`, `creationDate`, `modifyBy`,
+                `modifyDate`,  `categoryLevel1`, `categoryLevel2`, `logoPicPath`, `logoLocPath`,
+                `versionId`
+            )
+        VALUES
+            (
+                #{appInfo.softwareName},#{appInfo.APKName},#{appInfo.supportROM},#{appInfo.interfaceLanguage},#{appInfo.softwareSize} ,
+                #{appInfo.updateDate},#{appInfo.devId},#{appInfo.appInfo},#{appInfo.status},#{appInfo.onSaleDate},#{appInfo.offSaleDate} ,
+                #{appInfo.flatformId},#{appInfo.categoryLevel3},#{appInfo.downloads},#{appInfo.createdBy},#{appInfo.creationDate},#{appInfo.modifyBy} ,
+                #{appInfo.modifyDate},#{appInfo.categoryLevel1},#{appInfo.categoryLevel2},#{appInfo.logoPicPath},#{appInfo.logoLocPath} ,
+                #{appInfo.versionId}
+            );
+    </insert>
     
 </mapper>
