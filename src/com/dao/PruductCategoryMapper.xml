@@ -12,5 +12,8 @@
 		(#{pruductCategory.id},#{pruductCategory.pddid},#{pruductCategory.fid},
 		#{pruductCategory.name},#{pruductCategory.title},#{pruductCategory.img},#{pruductCategory.level} );
     </insert>
-    
+
+	<select id="getPruductList" resultType="PruductCategory">
+		select id,pddid,fid,title,name,img,LEVEL from product_category
+	</select>
 </mapper>
