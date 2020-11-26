@@ -8,7 +8,7 @@ public class AppVersion {
 
     private Integer id;
     private Integer appId;
-    private Integer versionNo;
+    private String versionNo;
     private String versionInfo;
     private Integer publishStatus;
     private Integer downloadLink;
@@ -39,11 +39,11 @@ return id;
         this.appId = appId;
     }
 
-    public Integer getVersionNo() {
+    public String getVersionNo() {
         return versionNo;
     }
 
-    public void setVersionNo(Integer versionNo) {
+    public void setVersionNo(String versionNo) {
         this.versionNo = versionNo;
     }
 
