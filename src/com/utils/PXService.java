@@ -1,4 +1,4 @@
-package com.controller.test;
+package com.utils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -24,7 +24,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import com.controller.test.Util;
+import com.utils.Util;
 
 public class PXService {
 
