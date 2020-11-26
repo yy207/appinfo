@@ -28,5 +28,19 @@
     <orderEntry type="library" name="javax.annotation" level="project" />
     <orderEntry type="library" name="spring-boot-devtools-2.1.2.RELEASE" level="project" />
     <orderEntry type="library" name="cos_api-5.4.5" level="project" />
+    <orderEntry type="module-library">
+      <library name="testng">
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/testng/testng/6.14.3/testng-6.14.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/com/beust/jcommander/1.72/jcommander-1.72.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="httpclient-4.5.11" level="project" />
+    <orderEntry type="library" name="httpcore-4.4.12" level="project" />
+    <orderEntry type="library" name="json-20170516" level="project" />
   </component>
 </module>
