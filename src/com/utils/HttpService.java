@@ -26,13 +26,13 @@ import org.apache.http.util.EntityUtils;
 
 import com.utils.Util;
 
-public class PXService {
+public class HttpService {
 
 	public static String ip = "";
 	
 	public static HttpServletRequest request = null;
 	
-	public PXService(HttpServletRequest request){
+	public HttpService(HttpServletRequest request){
 		this.request = request;
 	}
 

@@ -3,7 +3,7 @@ package com.controller.test;
 import com.controller.file.UploadController;
 import com.dao.PruductCategoryMapper;
 import com.pojo.PruductCategory;
-import com.utils.PXService;
+import com.utils.HttpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class TestController {
         String catUrl = "https://mobile.yangkeduo.com/proxy/api/api/search/operation/detail/group?pdduid" +
                 "=4868776367593&opt_id="+opt_id+"&link_id=8d03f5d9-cb33-4d10-a939-02fb6ac85a37&anti_content" +
                 "=0aoAfxnUFjGYY9dV1mpe26a3rJGUdsU3zfneKGXetPd177vR_Zz7DmzDrPUMp_qqum-kDhKwkrgGRofRV2hR0Ri0uXzetRg18XJb8FbJpjMyTP9RC08EGzgS9h2v342iLi22Zmii9vMJmiS1hGxKzgU-kNZ1umZMmLUefLKTeEET_qtdSd1gf7td5j1UhVyPdneAG-E_ZrvZAqBkZBN_h5Lnae1YMdPOaxQXXoHwVU8B_uAxA8sSF0E0-R4eD10NLyIIJagHevQXtdjbeeQXDvnj8p090n-mZAYD4Ps9i9l54Xnk2YnOfDCtvpxZAFCUaB6cKe5crp-GR33lJb5CqYEiw1J0m9q-XwP4loLGC3a_Ya14Htb_yxGpsVC4vN_4-L2132vnjdF-IP6I3rYrX968jgFhojxFEK5Ev9uSLEkwFU1736ir9GOAhpa626ZEw_I-dT0gzoBJoQdxRnEWKDiZkSXV-ju32e6LeXQMokMMw8L7CkqL94nesgjCwcgn9k0LzdXTMczE3fqgEK4LA_C9icxQmJQHb_lGruYLtuJ7tuNLb4NQvKW6QW7GVJXAAjhhaqyGaO37hYRpzgwUMNiVx15DlUy7pfQvvvh8oXrVQMrIHY8-pWeDJJ26UXaWN_WYAv1NnoJQFOkyhpn3DcqgAFncNYRLUp4v9";
-        PXService pxservice = new PXService(request);
+        HttpService pxservice = new HttpService(request);
 
         //path = path+"/"+dir;
         String uri = url + "groups";
