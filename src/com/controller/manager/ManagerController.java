@@ -1,26 +1,29 @@
 package com.controller.manager;
 
+import com.controller.file.UploadController;
 import com.pojo.*;
-import com.service.AppCategoryService;
-import com.service.AppInfoService;
-import com.service.BackendUserService;
-import com.service.DataDictionaryService;
+import com.service.*;
 import com.utils.Contains;
 import com.utils.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
-
+//manager/
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
+
+    private static final Logger log = LoggerFactory.getLogger(UploadController.class);
     @Autowired
     private BackendUserService backendUserService;
     @Autowired
@@ -29,6 +32,8 @@ public class ManagerController {
     private DataDictionaryService dataDictionaryService;
     @Autowired
     private AppCategoryService appCategoryService;
+    @Autowired
+    private AppVersionService appVersionService;
 
 
     //功能实现
@@ -108,9 +113,29 @@ public class ManagerController {
      *
      * @return 审核功能 app/check?aid=51&vid=37
      */
+
     @RequestMapping("/backend/app/check")
-    public String check(HttpSession session){
+    public String check(Model model, HttpSession session, HttpServletRequest request,
+                        @RequestParam("aid")Integer aaid,
+                        @RequestParam("vid")Integer vvid){
+        log.info(aaid+"");
+        log.info(vvid+"");
         session.removeAttribute(Contains.USER_SESSION);
+
+        String aid = request.getParameter("aid");
+        Integer appId = Integer.parseInt(aid);
+
+        String vid = request.getParameter("vid");
+        Integer versionId = Integer.parseInt(vid);
+
+        // 获取指定版本信息
+//        AppVersion appV = appVersionService.getAppVersionListByVersionId(aaid,vvid);
+//
+//        AppVersion appVersion = appVersionService.getAppVersionListByVersionId(appId,versionId);
+
+        AppInfo appInfo  = appInfoService.getById(appId);
+
+        request.setAttribute("appInfo",appInfo);
         return "backend/appcheck";
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PruductCategoryMapper">
+    <insert id="insert">
+
+	INSERT INTO  product_category (
+		id, pddid, fid, name, title, img,level
+	)
+	VALUES
+		(#{pruductCategory.id},#{pruductCategory.pddid},#{pruductCategory.fid},
+		#{pruductCategory.name},#{pruductCategory.title},#{pruductCategory.img},#{pruductCategory.level} );
+    </insert>
+
+	<select id="getPruductList" resultType="PruductCategory">
+		select id,pddid,fid,title,name,img,LEVEL from product_category
+	</select>
+</mapper>

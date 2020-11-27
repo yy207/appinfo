@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.BackendUserMapper">
+    <select id="login" resultType="com.pojo.BackendUser">
+            SELECT
+                backend_user.*,
+                data_dictionary.valueName as userTypeName
+            FROM
+                backend_user
+                INNER JOIN data_dictionary ON data_dictionary.valueId = backend_user.userType
+                AND data_dictionary.typeCode = 'USER_TYPE'
+                AND userCode = #{userCode}
+                AND userPassword = #{userPassword}
+    </select>
+
+</mapper>

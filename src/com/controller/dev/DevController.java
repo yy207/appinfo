@@ -97,6 +97,12 @@ public class DevController {
         Map<String, List<DataDictionary>> mapDataDictionary = dataDictionaryService.getMapDataDictionary();
         //
         List<AppCategory> categoryLevel1List = appCategoryService.getList();
+        List<AppCategory> categoryLevel2List = appCategoryService.getListByPid(
+                    categoryLevel1 == null || categoryLevel1 == "" ? null :
+                            Integer.parseInt(categoryLevel1));
+        List<AppCategory> categoryLevel3List = appCategoryService.getListByPid(
+                    categoryLevel2 == null || categoryLevel2 == "" ? null :
+                        Integer.parseInt(categoryLevel2));
 
         model.addAttribute("appInfoList",appInfoList);
         model.addAttribute("flatFormList",mapDataDictionary.get("APP_FLATFORM"));
@@ -104,8 +110,12 @@ public class DevController {
         model.addAttribute("pages",page);
         model.addAttribute("querySoftwareName",softwareName);
         model.addAttribute("categoryLevel1List",categoryLevel1List);
+        model.addAttribute("categoryLevel2List",categoryLevel2List);
+        model.addAttribute("categoryLevel3List",categoryLevel3List);
 
-
+        model.addAttribute("queryCategoryLevel1",categoryLevel1);
+        model.addAttribute("queryCategoryLevel2",categoryLevel2);
+        model.addAttribute("queryCategoryLevel3",categoryLevel3);
 
         return "developer/appinfolist";
     }

@@ -21,4 +21,6 @@ public interface AppCategoryMapper {
      * @return
      */
     List<AppCategory> getListByPid(@Param("parentId")Integer parentId);
+
+    //List<AppCategory>  getListByLevel(@Param("level") String level);
 }
