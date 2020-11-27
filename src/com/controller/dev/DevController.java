@@ -100,6 +100,7 @@ public class DevController {
 
         model.addAttribute("appInfoList",appInfoList);
         model.addAttribute("flatFormList",mapDataDictionary.get("APP_FLATFORM"));
+        model.addAttribute("statusList",mapDataDictionary.get("APP_STATUS"));
         model.addAttribute("pages",page);
         model.addAttribute("querySoftwareName",softwareName);
         model.addAttribute("categoryLevel1List",categoryLevel1List);
@@ -194,7 +195,7 @@ public class DevController {
         appInfoObj.setInterfaceLanguage(interfaceLanguage);
         appInfoObj.setAppInfo(appInfo);
         appInfoObj.setLogoPicPath(logoPicPath);
-        appInfoObj.setLogoLocPath(logoLocPath);
+        appInfoObj.setLogoLocPath(logoLocPath.substring(logoLocPath.lastIndexOf("/")+1));
 
         if (appInfoService.appinfoAddSave(appInfoObj)>0){
             return "developer/appinfolist";
@@ -228,6 +229,7 @@ public class DevController {
      * flatform/app/appview/59
      * @return App查看页
      */
+    //TODO SA
     @RequestMapping("/flatform/app/appview/{id}")
     public String appinfoadd(@PathVariable("id")Integer id,HttpServletRequest request){
         AppInfo appInfo = appInfoService.getById(id);
@@ -267,13 +269,37 @@ public class DevController {
      * @return App版本添加页
      */
     @RequestMapping("/flatform/app/appversionmodify")
-    public String appversionmodify(HttpServletRequest request){
-        String vid = request.getParameter("vid");
-        String aid = request.getParameter("aid");
-
-
+    public String appversionmodify(HttpServletRequest request) throws Exception {
+        Integer vid = null;
+        Integer aid = null;
+        try {
+            vid = Integer.parseInt(request.getParameter("vid"));
+            aid = Integer.parseInt(request.getParameter("aid"));
+        }catch (Exception e){
+            throw  new Exception("参数传递错误");
+        }
+        AppVersion appVersion = appVersionService.getAppVersionListByVersionId(aid,vid);
+        request.setAttribute("appInfo",appVersion);
         return "developer/appversionmodify";
     }
+    /**
+     * flatform/app/58/sale.json
+     * @return App下架
+     */
+    @ResponseBody
+    @RequestMapping("/flatform/app/{pid}/sale.json")
+    public Object sale(HttpServletRequest request,@PathVariable("pid")Integer pid){
+        Integer status =  appInfoService.getById(pid).getStatus();
+        if (status == 4)
+            appInfoService.appSale(pid,5);
+        if (status == 5)
+            appInfoService.appSale(pid,4);
+
+        Map<String,String> map = new HashMap<>();
+        map.put("resultMsg","success");
+        return map;
+    }
+
 
 
     //跳转页面

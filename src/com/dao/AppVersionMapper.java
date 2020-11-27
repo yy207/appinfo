@@ -25,5 +25,5 @@ public interface AppVersionMapper {
      * @param appId appId versionId
      * @return 版本信息集合
      */
-    List<AppVersion> getAppVersionListByVersionId(@Param("appId")Integer appId,@Param("versionId")Integer versionId);
+    AppVersion getAppVersionListByVersionId(@Param("appId")Integer appId,@Param("versionId")Integer versionId);
 }

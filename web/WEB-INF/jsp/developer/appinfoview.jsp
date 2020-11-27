@@ -103,10 +103,13 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
 			 <c:choose> 
-				  <c:when test="${appInfo.logoPicPath == null || appInfo.logoPicPath == ''}">   
+				  <c:when test="${appInfo.logoPicPath == null || appInfo.logoPicPath == ''}">
 				    	暂无
-				  </c:when> 
-				  <c:otherwise>   
+				  </c:when>
+                 <c:when test="${appInfo.logoLocPath != null || appInfo.logoLocPath != ''}">
+                     <img src="${pageContext.request.contextPath }/download/${appInfo.logoLocPath}?m=1" width="100px;"/>
+                 </c:when>
+                 <c:otherwise>
 				    <img src="${appInfo.logoPicPath }?m=1" width="100px;"/> 
 				  </c:otherwise> 
               </c:choose> 

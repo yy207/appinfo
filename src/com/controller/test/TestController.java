@@ -32,7 +32,7 @@ public class TestController {
     // /test/test?opt_id=9490
 
     /**
-     * 产品分类的数据
+     * 请求产品分类的数据，并存到自己的数据库
      * @param request
      * @param opt_id
      */
@@ -95,6 +95,10 @@ public class TestController {
 
     }
 
+    /**
+     * 下载分类表中所有的图片数据
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/down")
     public  String down(){

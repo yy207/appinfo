@@ -42,4 +42,6 @@ public interface AppInfoService {
      * @return 影响行数
      */
     Integer appinfoDelById(Integer id);
+
+    Integer appSale( Integer appId, Integer status);
 }

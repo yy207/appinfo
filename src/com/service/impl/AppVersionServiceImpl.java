@@ -23,7 +23,7 @@ public class AppVersionServiceImpl implements AppVersionService {
     }
 
     @Override
-    public List<AppVersion> getAppVersionListByVersionId(Integer appId, Integer versionId) {
+    public  AppVersion  getAppVersionListByVersionId(Integer appId, Integer versionId) {
         return appVersionMapper.getAppVersionListByVersionId(appId,versionId);
     }
 

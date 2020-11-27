@@ -24,7 +24,7 @@ public interface AppInfoMapper {
      */
     AppInfo getListByName(@Param("APKName") String APKName);
     /**
-     * 根据名称查询
+     * 根据id查询
      * @param id APKid
      * @return
      */
@@ -42,5 +42,12 @@ public interface AppInfoMapper {
      * @return 影响行数
      */
     Integer appinfoDelById(@Param("id") Integer id);
+
+    /**
+     * 修改App  下架
+     * @param appId APPID
+     * @return 结果
+     */
+    Integer appSale(@Param("appId") Integer appId,@Param("app_status")Integer status);
 
 }

@@ -19,19 +19,22 @@
         <trim prefix="WHERE"  prefixOverrides="and">
             <if test="appInfo != null ">
                 <if test="appInfo.softwareName != null and appInfo.softwareName != '' ">
-                    and app_info. softwareName like CONCAT('%',#{appInfo.softwareName},'%')
+                    and app_info.softwareName like CONCAT('%',#{appInfo.softwareName},'%')
                 </if>
                 <if test="appInfo.flatformId != null and appInfo.flatformId != '' ">
-                    and app_info. flatformId = #{appInfo.flatformId}
+                    and app_info.flatformId = #{appInfo.flatformId}
+                </if>
+                <if test="appInfo.status != null and appInfo.status != '' ">
+                    and app_info.status = #{appInfo.status}
                 </if>
                 <if test="appInfo.categoryLevel1 != null and appInfo.categoryLevel1 != '' ">
-                    and app_info. categoryLevel1 = #{appInfo.categoryLevel1}
+                    and app_info.categoryLevel1 = #{appInfo.categoryLevel1}
                 </if>
                 <if test="appInfo.categoryLevel2 != null and appInfo.categoryLevel2 != '' ">
-                    and app_info. categoryLevel2 = #{appInfo.categoryLevel2}
+                    and app_info.categoryLevel2 = #{appInfo.categoryLevel2}
                 </if>
                 <if test="appInfo.categoryLevel3 != null and appInfo.categoryLevel3 != '' ">
-                    and app_info. categoryLevel3 = #{appInfo.categoryLevel3}
+                    and app_info.categoryLevel3 = #{appInfo.categoryLevel3}
                 </if>
             </if>
         </trim>
@@ -73,4 +76,8 @@
     <delete id="appinfoDelById">
         delete from app_info where id = #{id}
     </delete>
+    
+    <update id="appSale">
+        UPDATE app_info set status = #{app_status}  where app_info.id = #{appId}
+    </update>
 </mapper>

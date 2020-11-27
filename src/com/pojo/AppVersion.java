@@ -11,7 +11,7 @@ public class AppVersion {
     private String versionNo;
     private String versionInfo;
     private Integer publishStatus;
-    private Integer downloadLink;
+    private String downloadLink;
     private Double versionSize;
     private Integer createdBy;
     private Date creationDate;
@@ -63,11 +63,11 @@ return id;
         this.publishStatus = publishStatus;
     }
 
-    public Integer getDownloadLink() {
+    public String getDownloadLink() {
         return downloadLink;
     }
 
-    public void setDownloadLink(Integer downloadLink) {
+    public void setDownloadLink(String downloadLink) {
         this.downloadLink = downloadLink;
     }
 

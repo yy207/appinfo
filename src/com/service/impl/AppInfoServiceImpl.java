@@ -38,4 +38,9 @@ public class AppInfoServiceImpl implements AppInfoService {
         return appInfoMapper.appinfoDelById(id);
     }
 
+    @Override
+    public Integer appSale(Integer appId, Integer status) {
+        return appInfoMapper.appSale(appId, status);
+    }
+
 }

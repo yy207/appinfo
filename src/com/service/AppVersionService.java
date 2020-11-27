@@ -26,6 +26,6 @@ public interface AppVersionService {
      * @param appId appId versionId
      * @return 版本信息集合
      */
-    List<AppVersion> getAppVersionListByVersionId(Integer appId,Integer versionId);
+    AppVersion getAppVersionListByVersionId(Integer appId,Integer versionId);
 
 }
